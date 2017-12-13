@@ -1,0 +1,48 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Data.Entity;
+
+
+namespace ContribeBookStore.Models
+{
+    public class SampleData1 : DropCreateDatabaseIfModelChanges<StoreEntities>
+    {
+        protected override void Seed(StoreEntities context)
+        {
+            var genres = new List<Genre>
+            {
+                new Genre { Name = "General" },
+                new Genre { Name = "Science" },
+                new Genre { Name = "Romance" },
+                new Genre { Name = "Drama" },
+                new Genre { Name = "Thrillers" },
+                new Genre { Name = "Engineering" }
+                                           };
+
+            var authors = new List<Author>
+            {
+
+                new Author { Name = "Average Swede" },
+                new Author { Name = "Rich Block" },
+                new Author { Name = "Cunning BastardC" },
+                new Author { Name = "First Author" },
+                new Author { Name = "Second Author" },
+                new Author { Name = "Aerosmith" },
+                new Author { Name = "Aisha Duo" },
+                new Author { Name = "Zeca Pagodinho" }
+            };
+
+            new List<Book>
+            {
+                new Book { Title = "Mastering åäö", Genre = genres.Single(g => g.Name == "General"), Price = 762, Author = authors.Single(a => a.Name == "Average Swede"), ImgBook = "/Content/Images/placeholder.gif" },
+                new Book { Title = "How To Spend Money", Genre = genres.Single(g => g.Name == "Science"), Price = 1000000, Author = authors.Single(a => a.Name == "Rich Block"), ImgBook = "/Content/Images/placeholder.gif" },
+                new Book { Title = "Generic", Genre = genres.Single(g => g.Name == "General"), Price = 185, Author = authors.Single(a => a.Name == "Average Swede"), ImgBook = "/Content/Images/placeholder.gif" },
+                new Book { Title = "HRandome", Genre = genres.Single(g => g.Name == "Engineering"), Price = 7621748, Author = authors.Single(a => a.Name == "Cunning Bastard"), ImgBook = "/Content/Images/placeholder.gif" },
+                new Book { Title = "Worlds", Genre = genres.Single(g => g.Name == "Drama"), Price = 999, Author = authors.Single(a => a.Name == "Average Swede"), ImgBook = "/Content/Images/placeholder.gif" },
+                new Book { Title = "How To Spend Mone", Genre = genres.Single(g => g.Name == "Drama"), Price = 499, Author = authors.Single(a => a.Name == "Rich Block"), ImgBook = "/Content/Images/placeholder.gif" },
+                new Book { Title = "Desired", Genre = genres.Single(g => g.Name == "Thrillers"), Price = 564, Author = authors.Single(a => a.Name == "Rich Block"), ImgBook = "/Content/Images/placeholder.gif" },
+            }.ForEach(a => context.Albums.Add(a));
+        }
+    }
+}

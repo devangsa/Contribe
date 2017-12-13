@@ -1,0 +1,33 @@
+﻿@model ContribeBookStore.Models.Genre
+
+@{
+    ViewBag.Title = "Browse Books";
+}
+
+@{
+
+    if (string.IsNullOrEmpty(ViewBag.ErrorMessage))
+    {
+        <div class="genre">
+            <h3><em>@Model.Name</em> Books</h3>
+
+            <ul id="album-list">
+                @foreach (var book in Model.Books)
+                {
+                    <li>
+                        <a href="@Url.Action("Details", new { id = book.BookId })">
+                            <img alt="@book.Title" src="@book.AlbumArtUrl" />
+                            <span>@book.Title</span>
+                        </a>
+                    </li>
+                }
+            </ul>
+        </div>
+    }
+    else
+    {
+        <div class="genre">
+            <h3><em>@ViewBag.ErrorMessage</em></h3>
+        </div>
+    }
+}

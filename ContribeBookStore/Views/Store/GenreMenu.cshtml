@@ -1,0 +1,67 @@
+﻿@model IEnumerable<ContribeBookStore.Models.Genre>
+
+<style>
+    * {
+        box-sizing: border-box;
+    }
+
+    body {
+        font-family: "Lato", sans-serif;
+    }
+
+    /* Style the tab */
+    ul.tab {
+        float: left;
+        padding-top: 20px;
+        
+        width: 160px;
+        height: 300px;
+    }
+
+        /* Style the buttons inside the tab */
+        ul.tab li {
+            display: block;
+            background-color: inherit;
+            color: black;
+            padding: 15px 10px 16px 10px;
+            width: 100%;
+            border: none;
+            outline: none;
+            text-align: left;
+            cursor: pointer;
+            transition: 0.3s;
+            font-size: 17px;
+        }
+
+            /* Change background color of buttons on hover */
+            /*ul.tab li:hover {
+                background-color: #ddd;
+            }*/
+
+            /* Create an active/current "tab button" class */
+            ul.tab li.active {
+                background-color: #ccc;
+            }
+
+    /* Style the tab content */
+    .tabcontent {
+        float: left;
+        padding: 0px 12px;
+        border: 1px solid #ccc;
+        width: 70%;
+        border-left: none;
+        height: 300px;
+    }
+</style>
+
+
+<ul class="tab">
+    @foreach (var genre in Model)
+    {
+        <li class="tablinks">
+            @Html.ActionLink(genre.Name,
+         "Browse", "Store",
+         new { Genre = genre.Name }, null)
+        </li>
+    }
+</ul>

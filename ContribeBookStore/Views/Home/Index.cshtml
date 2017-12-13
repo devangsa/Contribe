@@ -1,0 +1,54 @@
+﻿
+@model List<ContribeBookStore.Models.Book>
+@{
+    ViewBag.Title = "CONTRIBE Book Store- Devarajan";
+}
+
+
+
+<div id="slideshow">
+    <div>
+        <img src="/content/Images/home-showcase.jpg" style="width:1100px;height:300px;">
+    </div>
+    <div>
+        <img src="/content/Images/home-showcase1.jpg" style="width:1100px;height:300px;">
+    </div>
+    <div>
+        <img src="/content/Images/home-showcase2.jpg" style="width:1100px;height:300px;">
+    </div>
+    <div>
+        <img src="/content/Images/home-showcase3.jpg" style="width:1100px;height:300px;">
+    </div>
+    <div>
+        <img src="/content/Images/home-showcase4.jpg" style="width:1100px;height:300px;">
+    </div>
+</div>
+
+<h3><em>Contribe's</em> Top Seeling Books Nov 2017</h3>
+
+<ul id="album-list">
+    @foreach (var book in Model)
+    {
+        <li>
+            <a href="@Url.Action("Details", "Store",
+                new { id = book.BookId })">
+
+                <img alt="@book.Title" src="@book.AlbumArtUrl" />
+                <span>@book.Title</span>
+            </a>
+        </li>
+    }
+</ul>
+
+<script>
+    $("#slideshow > div:gt(0)").hide();
+
+    setInterval(function () {
+        $('#slideshow > div:first')
+          .fadeOut(1000)
+          .next()
+          .fadeIn(1000)
+          .end()
+          .appendTo('#slideshow');
+    }, 3000);
+</script>
